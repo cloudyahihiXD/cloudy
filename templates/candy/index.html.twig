@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandyController!{% endblock %}
+
+{% block navigation %}
+<style>
+    {# .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; } #}
+    ul {
+        list-style-type: none;
+        margin: 5;
+        padding: 5;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 7px;
+        text-decoration: none;
+    }
+
+</style>
+<div class="navigationbar">
+    <ul>
+        <li style="width: 10%"><img src="{{asset('images/logo.png')}}"  alt="logo" width="100" height="50"></li>
+        <li style="float: right"><a href="https://127.0.0.1:8000/type">Type</a></li>
+        <li style="float: right"><a href="https://127.0.0.1:8000/type">Candy Type</a></li>
+        <li style="float: right"><a href="https://127.0.0.1:8000/main">Logout</a></li>
+        <li  style="float: right">
+            <a>
+               <input type="text" placeholder="Search.." name="search">
+                <button type="submit" class="btn-primary">Search</button>
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-3">
+    {% for flash in app.flashes("Success") %}
+        <p class="alert alert-primary"> {{ flash }} </p>
+    {% endfor %}
+    {% for flash in app.flashes("Error") %}
+        <p class="alert alert-danger"> {{ flash }} </p>
+    {% endfor %}
+</div>
+
+    <div class="container-fluid">
+    <a class="btn btn-primary" href="https://127.0.0.1:8000/candy/create">Create Candy</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Candy ID</th>
+            <th scope="col">Candy Name</th>
+            <th scope="col">Candy Images</th>
+            <th scope="col">Candy Prices</th>
+            <th scope="col">Candy Shelf Life</th>
+            <th scope="col">Candy Detail</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for candy in candies %}
+        <tr>
+            <td scope="row">{{ candy.id }}</td> 
+            <td scope="row">{{ candy.name }}</td>
+            <td scope="row">{{ candy.images }}</td> 
+            <td scope="row">{{ candy.prices }}</td>
+            <td scope="row">{{ candy.Shelflife }}</td> 
+            <td scope="row">{{ candy.detail }}</td>
+            <td scope="row"> 
+                <a class="btn btn-warning" href="{{ path ( 'candyupdate' , {'id' : candy.id } ) }}">Update</a>
+                <a class="btn btn-danger" href="{{ path ( 'candydelete' , {'id' : candy.id } ) }}"
+                                          onclick = "return confirm('Are you sure to delete ?')"
+                >Delete</a>
+            </td>
+        </tr> 
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

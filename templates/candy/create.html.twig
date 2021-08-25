@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Create type {% endblock %}
+
+{% block body %}
+  <div class="container-fluid mt-3">
+      <h2 class="text-center mt-5">CREATE CANDY</h2>
+      <div class="col-md-6"></div>
+          {{ form_start (form) }}
+              <div class="form-group">
+                  {{ form_label (form.name) }}
+                  {{ form_widget (form.name, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_label (form.images) }}
+                  {{ form_widget (form.images, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_label (form.prices) }}
+                  {{ form_widget (form.prices, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_label (form.ShelfLife) }}
+                  {{ form_widget (form.ShelfLife, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_label (form.detail) }}
+                  {{ form_widget (form.detail, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group text-center mt-3">
+                  <button class="btn btn-primary btn-lg">CREATE</button>
+              </div>
+          {{ form_end (form)}}
+  </div>   
+{% endblock %}
